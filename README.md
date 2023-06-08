@@ -29,3 +29,33 @@
 - driver can see total income
 - user can see ride history and expense
 - user can claim promo code on points
+
+# Used Stacks
+
+## Frontend
+
+- React
+- Next
+- Chakra UI / Next UI
+- Mapbox
+- Next-Auth
+- TailwindCSS
+
+## Backend
+
+### Core
+- NodeJS 
+- Mongo + Redis 
+- JWT + HTTP Only Cookie
+- Mongoose, Tortoise ORM
+- Cloudinary
+
+### Auth
+- Python
+- Mysql
+- TortoiseORM
+
+## Build
+- TurboPack
+- Nginx
+- Docker
