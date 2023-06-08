@@ -1,5 +1,9 @@
 # WeRide
 
+lottie:
+- ride : https://lottiefiles.com/89273-car-ride-lottie-animation
+- 404 : https://lottiefiles.com/42479-page-not-found-404
+
 ### Features
 
 ### user : client
