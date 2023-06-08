@@ -1,0 +1,44 @@
+{
+    "name": "weride",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "cross-env HUSKY_SKIP_INSTALL=true next dev",
+        "build": "cross-env HUSKY_SKIP_INSTALL=true next build",
+        "postbuild": "cross-env next-sitemap --config next-sitemap.config.js",
+        "prod:build": "cross-env HUSKY_SKIP_INSTALL=true yarn codegen && yarn build && yarn postbuild",
+        "start": "cross-env HUSKY_SKIP_INSTALL=true next start",
+        "lint": "next lint",
+        "prettier": "prettier --write \"**/*.+(js|jsx|ts|tsx|css|scss|md)\""
+    },
+    "lint-staged": {
+        "**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "@chakra-ui/next-js": "^2.1.4",
+        "@chakra-ui/react": "^2.7.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@types/node": "20.2.5",
+        "@types/react": "18.2.9",
+        "@types/react-dom": "18.2.4",
+        "autoprefixer": "10.4.14",
+        "cross-env": "^7.0.3",
+        "eslint": "8.42.0",
+        "eslint-config-next": "13.4.4",
+        "framer-motion": "^10.12.16",
+        "husky": "^8.0.3",
+        "next": "13.4.4",
+        "next-sitemap": "^4.1.3",
+        "postcss": "8.4.24",
+        "prettier": "^2.8.8",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "tailwindcss": "3.3.2",
+        "typescript": "5.1.3"
+    }
+}
