@@ -1,0 +1,27 @@
+# Ignore all files in the node_modules folder
+node_modules/**
+
+# Ignore all build output directories
+out/**
+.build/**
+.cache/**
+.next/**
+
+# Ignore certain config files
+.eslintrc*
+.prettierrc*
+babel.config.js
+jest.config.js
+.env
+.env.local
+
+# Ignore static files and other assets
+public/**
+static/**
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.pdf
