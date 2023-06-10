@@ -5,6 +5,10 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { Dropdown } from '@nextui-org/react'
 
+interface MenuItem {
+    key: string;
+    name: string;
+  }
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
