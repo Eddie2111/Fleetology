@@ -1,30 +1,46 @@
-import Image from 'next/image'
-import { useState } from 'react'
-import Link from 'next/link'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import { Dropdown } from '@nextui-org/react'
+// import Image from 'next/image'
+// import { useState } from 'react'
+// import Link from 'next/link'
+// import { signIn } from 'next-auth/react'
+// import { useRouter } from 'next/router'
+// import { Dropdown } from '@nextui-org/react'
 
-interface MenuItem {
-    key: string;
-    name: string;
-  }
-const Navbar: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const router = useRouter()
-    const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen)
-    const menuItems = [
-        { key: 'new', name: 'New File' },
-        { key: 'copy', name: 'Copy Link' },
-        { key: 'edit', name: 'Edit File' },
-        { key: 'delete', name: 'Delete File' },
-    ]
-    return (
+import React from 'react';
+
+const menuItems = [
+  { key: 'new', name: 'New File' },
+  { key: 'copy', name: 'Copy Link' },
+  { key: 'edit', name: 'Edit File' },
+  { key: 'delete', name: 'Delete File' },
+];
+
+interface MenuItemProps {
+  key: string;
+  name: string;
+}
+
+const MenuItem: React.FC<MenuItemProps> = ({ key, name }) => (
+  <div key={key}>
+    <span>{name}</span>
+  </div>
+);
+
+const Navbar: React.FC = () => (
+  <div>
+    {menuItems.map((item) => (
+      <MenuItem key={item.key} name={item.name} />
+    ))}
+  </div>
+);
+
+export default Navbar;
+
+
+/*
         <>
             <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 w-full z-[1000]">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link href="/" className="flex items-center">
-                        {/*  Image here !!*/}
 
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                             WeRide
@@ -82,18 +98,16 @@ const Navbar: React.FC = () => {
                                         items={menuItems}
                                         variant="light"
                                     >
-                                        {(item) => (
+                                        {menuItems.map((item) => (
                                             <Dropdown.Item
                                                 key={item.key}
-                                                color={
-                                                    item.key === 'delete'
-                                                        ? 'error'
-                                                        : 'default'
+                                                onClick={() =>
+                                                    alert(item.name)
                                                 }
                                             >
                                                 {item.name}
                                             </Dropdown.Item>
-                                        )}
+                                        ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
 
@@ -224,7 +238,4 @@ const Navbar: React.FC = () => {
             <br />
             <br />
         </>
-    )
-}
-
-export default Navbar
+*/

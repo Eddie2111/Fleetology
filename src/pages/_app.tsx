@@ -10,8 +10,8 @@ const Footer = dynamic(() => import('@/components/footer'), { ssr: false })
 export default function App({
     Component,
     pageProps: { session, ...pageProps },
-}) {
-    return (
+  }: AppProps & { Component: React.ComponentType }) {
+   return (
         <>
             <NextUIProvider>
                 <SessionProvider session={session}>

@@ -8,33 +8,6 @@ import TwitterProvider from 'next-auth/providers/twitter'
 
 export const authOptions: NextAuthOptions = {
     providers: [
-        CredentialsProvider({
-            name: 'Credentials',
-            credentials: {
-                username: {
-                    label: 'Username',
-                    type: 'text',
-                    placeholder: 'jsmith',
-                },
-                password: { label: 'Password', type: 'password' },
-            },
-            async authorize(credentials) {
-                const user = { id: 1, name: 'J Smith', email: 'js@gmail.com' }
-                console.log('credentials', credentials)
-                if (
-                    credentials.username === 'jsmith' &&
-                    credentials.password === 'password'
-                ) {
-                    return {
-                        ...user,
-                        redirect: '/admin',
-                    }
-                } else {
-                    return null
-                }
-            },
-        }),
-
         GoogleProvider({
             clientId: process.env.GOOGLE_ID ?? 'default-client-id',
             clientSecret: process.env.GOOGLE_SECRET ?? 'default-client-secret',
