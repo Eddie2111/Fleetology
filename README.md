@@ -1,6 +1,6 @@
-# WeRide
+# Fleetology-4
 
-## Active project Link: https://weride.vercel.app
+## Active project Link: https://fleetology.vercel.app
 
 lottie:
 - ride : https://lottiefiles.com/89273-car-ride-lottie-animation
