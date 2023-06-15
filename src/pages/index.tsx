@@ -1,13 +1,13 @@
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 
-const HomeCard = dynamic(() => import('@/components/cards/HomeCard'))
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
-import Uber from '@/animation/uber.json'
+const HomeCard = dynamic(() => import('@/components/cards/HomeCard'))
+import Uber from '@/animation/Uber.json'
 
 export default function Home() {
     return (
-        <div className="text-black text-4xl">
+        <div className="text-black text-4xl my-5 py-5 pb-10 mb-10">
             <motion.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
