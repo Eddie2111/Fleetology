@@ -1,9 +1,14 @@
-# Fleetology-4
+# Fleetology
 
 ## Active project Link: https://fleetology.vercel.app
 
 lottie:
-- ride : https://lottiefiles.com/89273-car-ride-lottie-animation
+- fleet hero: https://lottiefiles.com/73232-fleetph-logo-animation
+- fleet home sub hero: https://lottiefiles.com/90421-car-in-movement
+- fleet concept: https://lottiefiles.com/8959-car-revolving-animation
+- fleet default footer: https://lottiefiles.com/9507-finding-route
+- login focus hero: https://lottiefiles.com/117749-tracking-my-package
+- fleet default footer down: https://lottiefiles.com/29361-ambulance-doppler-effect
 - 404 : https://lottiefiles.com/42479-page-not-found-404
 
 ### Features
@@ -14,6 +19,7 @@ lottie:
 - user can create profile
 - user can rent ride
 - users can fill rating
+- admin has to allow signed up drivers
 
 ### location:
 - user can see drivers location
@@ -28,6 +34,7 @@ lottie:
 - drivers can create profile
 - drivers can rent ride
 - drivers can fill rating
+- admin has to allow
 
 ### payment system:
 - user can see fare
