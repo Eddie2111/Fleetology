@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
     const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen)
     return (
     <>
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 w-full z-[1000]">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 w-full z-[1000] mb-20">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link href="/" className="flex items-center">
 
@@ -229,6 +229,7 @@ const Navbar: React.FC = () => {
             <br />
             <br />
             <br />
+        <br/><br/><br/>
         </>
     )
 };

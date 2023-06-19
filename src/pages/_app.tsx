@@ -1,8 +1,10 @@
 import dynamic from 'next/dynamic'
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { NextUIProvider } from '@nextui-org/react'
 import { SessionProvider } from 'next-auth/react'
+
+import '../styles/globals.css'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Navbar = dynamic(() => import('@/components/navbar'), { ssr: false })
 const Footer = dynamic(() => import('@/components/footer'), { ssr: false })
