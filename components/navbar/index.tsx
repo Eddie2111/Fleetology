@@ -219,7 +219,12 @@ const Navbar: React.FC = () => {
                             >
                                 Sign in
                             </button>
-                            <button className="ml-4 text-white">Sign up</button>
+                            <button
+                                className="ml-4 text-white"
+                                onClick={() => router.push('/signup')}
+                            >
+                                Sign up
+                            </button>
                         </div>
                     </div>
                 </div>

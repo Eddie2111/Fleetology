@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://weride.vercel.app
+Host: https://fleetology.vercel.app
 
 # Sitemaps
-Sitemap: https://weride.vercel.app/sitemap.xml
+Sitemap: https://fleetology.vercel.app/sitemap.xml

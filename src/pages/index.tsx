@@ -1,13 +1,17 @@
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 
+import BlurModal from '@/components/modals/blurmodal'
+import BackdropModal from '@/components/modals/backdropmodal'
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
-const HomeCard = dynamic(() => import('@/components/cards/HomeCard'))
+const HomeCard = dynamic(() => import('@/components/home/HomeCard'))
 import Uber from '@/animation/Uber.json'
 
 export default function Home() {
     return (
         <div className="text-black text-4xl my-5 py-5 pb-10 mb-10">
+            <BlurModal />
+            <BackdropModal />
             <motion.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
