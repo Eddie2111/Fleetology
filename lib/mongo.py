@@ -10,7 +10,8 @@ import json
 
 # connecting to the database
 # connection has to a singleton pattern and when there is a connection, no connection will be made, else a connection will be created
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb+srv://fleetology:fleet2023@cluster0.mutwc0v.mongodb.net/?retryWrites=true&w=majority')
+#client = MongoClient('mongodb://localhost:27017/')   
 db = client['rideshare']
 
 
