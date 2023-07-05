@@ -1,5 +1,5 @@
 export default function Custom500() {
-    return(
+    return (
         <>
             <h1>500 - Page Not Found</h1>
         </>

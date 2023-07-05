@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "cross-env HUSKY_SKIP_INSTALL=true next dev",
-        "build": "cross-env HUSKY_SKIP_INSTALL=true next build",
+        "build": "cross-env HUSKY_SKIP_INSTALL=true yarn prettier && next lint && next build",
         "postbuild": "cross-env next-sitemap --config next-sitemap.config.js",
         "prod:build": "cross-env HUSKY_SKIP_INSTALL=true yarn codegen && yarn build && yarn postbuild",
         "start": "cross-env HUSKY_SKIP_INSTALL=true next start",
@@ -21,6 +21,7 @@
     "dependencies": {
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
+        "@headlessui/react": "^1.7.15",
         "@nextui-org/react": "^1.0.0-beta.13",
         "@types/node": "20.2.5",
         "@types/react": "18.2.9",
@@ -30,7 +31,7 @@
         "cross-env": "^7.0.3",
         "dotenv": "^16.3.1",
         "eslint": "8.42.0",
-        "eslint-config-next": "13.4.4",
+        "eslint-config-next": "^12.0.4",
         "framer-motion": "^10.12.16",
         "husky": "^8.0.3",
         "jsonwebtoken": "^9.0.0",

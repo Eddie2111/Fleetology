@@ -1,5 +1,5 @@
 export default function Custom404() {
-    return(
+    return (
         <>
             <h1>404 - Page Not Found</h1>
         </>
