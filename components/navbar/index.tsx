@@ -188,7 +188,7 @@ const Navbar: React.FC = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="/"
+                                    href="/services"
                                     className="block mt-2 py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0  text-white md:  hover:bg-gray-700  hover:text-white md: hover:bg-transparent"
                                 >
                                     Services

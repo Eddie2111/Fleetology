@@ -1,17 +1,15 @@
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 
-import BlurModal from '@/components/modals/blurmodal'
-import BackdropModal from '@/components/modals/backdropmodal'
+import Services from './services'
+
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 const HomeCard = dynamic(() => import('@/components/home/HomeCard'))
-import Uber from '@/animation/Uber.json'
+import Uber from '@/animation/fleetlogo.json'
 
 export default function Home() {
     return (
         <div className="text-black text-4xl my-5 py-5 pb-10 mb-10">
-            <BlurModal />
-            <BackdropModal />
             <motion.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -21,9 +19,21 @@ export default function Home() {
                 <center>
                     <Lottie
                         animationData={Uber}
-                        style={{ height: 500, width: 500, borderRadius: 10 }}
+                        style={{
+                            height: '60%',
+                            width: '60%',
+                            marginTop: '-10rem',
+                        }}
                         className="rounded-md"
                     />
+                    <p className="text-4xl mt-[-5rem] mb-[3rem]">
+                        {' '}
+                        Making your shipments secure and acknowledged
+                    </p>
+                    <p className="text-xl mb-[3rem]">
+                        {' '}
+                        What Fleetology Provides
+                    </p>
                 </center>
             </motion.div>
 
@@ -33,9 +43,8 @@ export default function Home() {
                 transition={{ duration: 1 }}
                 className="text-center justify-center"
             >
-                <div className="flex flex-row text-center justify-between w-[80%] mx-auto px-auto">
-                    <HomeCard />
-                </div>
+                <div className="flex flex-row text-center justify-between w-[80%] mx-auto px-auto"></div>
+                <Services />
             </motion.div>
         </div>
     )
