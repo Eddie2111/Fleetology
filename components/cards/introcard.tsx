@@ -17,13 +17,16 @@ export default function IntroCard({ title, description }: Props) {
             </Card.Body>
             <Card.Divider />
             <Card.Footer>
-                <Row justify="flex-end">
+                
+            </Card.Footer>
+        </Card>
+    )
+}
+/*
+<Row justify="flex-end">
                     <Button size="sm" light>
                         Cancel
                     </Button>
                     <Button size="sm">Agree</Button>
                 </Row>
-            </Card.Footer>
-        </Card>
-    )
-}
+                */
