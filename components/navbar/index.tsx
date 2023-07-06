@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
                                     Home
                                 </Link>
                             </li>
-                            <li>
+                            <li className="text-left">
                                 <Dropdown>
                                     <Dropdown.Button
                                         color={'default'}

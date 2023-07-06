@@ -17,7 +17,9 @@ class Database {
     async connectDB(): Promise<boolean> {
         try {
             if (mongoose.connection.readyState !== 1) {
-                await mongoose.connect('http://localhost:27137/weride')
+                await mongoose.connect(
+                    'mongodb+srv://fleetology:fleet2023@cluster0.mutwc0v.mongodb.net/?retryWrites=true&w=majority'
+                )
                 console.log('MongoDB connected')
                 return true
             }

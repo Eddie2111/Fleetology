@@ -9,7 +9,7 @@ import Uber from '@/animation/fleetlogo.json'
 
 export default function Home() {
     return (
-        <div className="text-black text-4xl my-5 py-5 pb-10 mb-10">
+        <div className="text-black text-4xl my-2 py-5 pb-10 mb-10">
             <motion.div
                 initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -20,13 +20,13 @@ export default function Home() {
                     <Lottie
                         animationData={Uber}
                         style={{
-                            height: '60%',
-                            width: '60%',
-                            marginTop: '-10rem',
+                            height: '70%',
+                            width: '70%',
+                            marginTop: '-5rem',
                         }}
                         className="rounded-md"
                     />
-                    <p className="text-4xl mt-[-5rem] mb-[3rem]">
+                    <p className="text-4xl mb-[3rem]">
                         {' '}
                         Making your shipments secure and acknowledged
                     </p>

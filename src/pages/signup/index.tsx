@@ -1,5 +1,9 @@
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Transition } from '@headlessui/react'
+
+const ManagerSignup = dynamic(() => import('@/components/modals/managersignup'))
+const DriverSignup = dynamic(() => import('@/components/modals/driversignup'))
 
 interface Props {
     role: string
@@ -31,7 +35,18 @@ const SignupPage = () => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+        <div className="flex md:flex-row justify-center items-center flex-col">
+            <div>
+                <ManagerSignup />
+                <DriverSignup />
+            </div>
+            <div></div>
+        </div>
+    )
+}
+
+export default SignupPage
+/*
             <div className="w-80 mx-auto p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-semibold mb-6">Sign up</h2>
                 <div>
@@ -106,8 +121,4 @@ const SignupPage = () => {
                     </button>
                 </div>
             </div>
-        </div>
-    )
-}
-
-export default SignupPage
+*/

@@ -1,25 +1,15 @@
 import { Schema, model } from 'mongoose'
 
-interface History {
-    serial: string
-    from: string
-    to: string
-    client: string // client serial here
-    fare: string
-    time: string
-}
-
 interface Drivers {
     serial: string
-    name: string
+    name?: string
     email: string
     password: string
     profileImage?: string
+    fleet?: string
     location?: string
-    phoneNumber: string
-    isActive: boolean
-    rating: number
-    rideHistory: History
+    phoneNumber?: string
+    isActive?: boolean
 }
 
 const driverSchema = new Schema<Drivers>({
@@ -28,11 +18,10 @@ const driverSchema = new Schema<Drivers>({
     email: { type: String, required: true },
     password: { type: String, required: true },
     profileImage: { type: String },
+    fleet: { type: String },
     location: { type: String },
-    phoneNumber: { type: String, required: true },
-    isActive: { type: Boolean, required: true },
-    rideHistory: { type: Object },
-    rating: { type: Number },
+    phoneNumber: { type: String },
+    isActive: { type: Boolean },
 })
 
 const driverModel = model<Drivers>('Driver', driverSchema)

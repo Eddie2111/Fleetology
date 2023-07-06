@@ -11,6 +11,8 @@ export default function Services() {
         <div className="m-auto p-auto justify-center md:w-[70%] w-[90%]">
             <div className="flex flex-col md:flex-row justify-between my-10">
                 <div className="h-32 mt-10">
+                    <div className="h-10 mb-10 pb-10">&nbsp;</div>
+
                     <IntroCard
                         title="Route Finding"
                         description="We provide the best route for your package to be delivered in the fastest time possible"
@@ -18,8 +20,7 @@ export default function Services() {
                 </div>
                 <Lottie
                     animationData={RouteFinding}
-                    style={{ height: '50%', width: '50%' }}
-                    className="mt-5"
+                    style={{ height: '50%', width: '50%', marginTop: '10rem' }}
                 />
             </div>
 
@@ -29,7 +30,7 @@ export default function Services() {
                     style={{ height: '50%', width: '50%' }}
                     className="mt-5"
                 />
-                <div className="h-32 mt-10">
+                <div className="h-32 mt-10 mb-20">
                     <IntroCard
                         title="Hasselless tracking"
                         description="With Fleetology, you can track your package in real time and get notified when it is delivered"
@@ -38,7 +39,7 @@ export default function Services() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-between my-10">
-                <div className="h-32 mt-10">
+                <div className="h-32 mt-10 mb-[27%]">
                     <IntroCard
                         title="Asset Status Tracking"
                         description="With Fleetology, you can track your asset in real time in case of theft or any other mishap with emergency services"

@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "cross-env HUSKY_SKIP_INSTALL=true next dev",
-        "build": "cross-env HUSKY_SKIP_INSTALL=true next build",
+        "build": "cross-env HUSKY_SKIP_INSTALL=true next lint && yarn prettier -w && next build",
         "postbuild": "cross-env next-sitemap --config next-sitemap.config.js",
         "prod:build": "cross-env HUSKY_SKIP_INSTALL=true yarn codegen && yarn build && yarn postbuild",
         "start": "cross-env HUSKY_SKIP_INSTALL=true next start",
