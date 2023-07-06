@@ -18,7 +18,7 @@ class Database {
         try {
             if (mongoose.connection.readyState !== 1) {
                 await mongoose.connect(
-                    'mongodb+srv://fleetology:fleet2023@cluster0.mutwc0v.mongodb.net/?retryWrites=true&w=majority'
+                    process.env.MONGODB_URI || 'mongodb://localhost:27017',
                 )
                 console.log('MongoDB connected')
                 return true
