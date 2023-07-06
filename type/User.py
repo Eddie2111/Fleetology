@@ -3,7 +3,7 @@ from typing import Optional
 from typing import List
 
 class User(BaseModel):
-    serial: str;
+    # insert serial from controller systems
     name: str;
     email: str;
     password: str;
@@ -14,7 +14,7 @@ class User(BaseModel):
     #rideHistory: any;
 
 class Driver(BaseModel):
-    serial: str;
+    # insert serial from controller systems
     name: str;
     email: str;
     password: str;

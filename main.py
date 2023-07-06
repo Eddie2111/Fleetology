@@ -8,6 +8,10 @@ from config.CorsOrigins import origins
 # type imports
 from type.User import User, Driver
 
+# import controllers
+from controllers.user import CreateUser
+from controllers.driver import CreateDriver
+
 # initating fastapi
 app = FastAPI()
 
@@ -33,9 +37,15 @@ async def add_security_headers(request, call_next):
 
 
 # initating routes
+
+# !IMPORTANT : cron route is to keep the server alive, do not remove it
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"status": 200}
+@app.get("/cron")
+async def root():
+    return {"status": 200}
+# !IMPORTANT : cron route is to keep the server alive, do not remove it
 
 # get request to run tests
 @app.get("/signup")
@@ -51,7 +61,7 @@ async def signup():
 # receieve the post request on signup → user
 @app.post("/signup/user")
 async def signup(data: User):
-    return data
+    return CreateUser(data)
 # receieve the post request on signup → driver
 @app.post("/signup/driver")
 async def signup(data: Driver):
