@@ -1,13 +1,9 @@
 def validate_userData(data):
     # Define the expected data types for each key
     expected_types = {
-        "name": str,
+        "serial": str,
         "email": str,
         "password": str,
-        "profileImage": str,
-        "location": str,
-        "phoneNumber": str,
-        "isActive": bool
     }
 
     for key, expected_type in expected_types.items():
