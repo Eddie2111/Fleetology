@@ -9,3 +9,4 @@ class UserModel_Signup(BaseModel):
     serial: str
     email: str
     password: str
+    user_type: str

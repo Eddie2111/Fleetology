@@ -4,6 +4,7 @@ def validate_userData(data):
         "serial": str,
         "email": str,
         "password": str,
+        "user_type": str
     }
 
     for key, expected_type in expected_types.items():

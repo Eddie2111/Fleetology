@@ -11,6 +11,7 @@ def test_validate_userData():
         "serial": "12345",
         "email": "test@example.com",
         "password": "password123",
+        "user_type": "manager"
     }
     assert validate_userData(data) is True
 
@@ -26,6 +27,7 @@ def test_validate_userData():
         "serial": 12345,
         "email": "test@example.com",
         "password": "password123",
+        "user_type": "manager"
     }
     assert validate_userData(data) == "Invalid data type for serial. Expected str, got int"
 
@@ -34,6 +36,7 @@ def test_validate_userData():
         "serial": "12345",
         "email": 12345,
         "password": "password123",
+        "user_type": "manager"
     }
     assert validate_userData(data) == "Invalid data type for email. Expected str, got int"
 
@@ -42,5 +45,15 @@ def test_validate_userData():
         "serial": "12345",
         "email": "test@example.com",
         "password": 12345,
+        "user_type": "manager"
+    }
+    assert validate_userData(data) == "Invalid data type for password. Expected str, got int"
+
+    # Test case 6: Invalid data type for user_type
+    data = {
+        "serial": "12345",
+        "email": "test@example.com",
+        "password": 12345,
+        "user_type": 12345
     }
     assert validate_userData(data) == "Invalid data type for password. Expected str, got int"
