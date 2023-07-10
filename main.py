@@ -1,7 +1,7 @@
 # create a fastapi server with a single route
 
 from fastapi import FastAPI
-#from model.mysql import cursor
+from model.mysql import __test__
 from fastapi.middleware.cors import CORSMiddleware
 
 # origin imports
@@ -42,5 +42,7 @@ app.include_router(login)
 app.include_router(signup)
 app.include_router(auth)
 
+# db test
+__test__();
 
 # uvicorn main:app --reload --port 3200

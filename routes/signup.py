@@ -13,9 +13,9 @@ async def root():
 
 @signup.post("/signup")
 async def root(data: UserModel_Signup):
-    print(Signup(data))
+    response = Signup(data)
     return {
-        "message": "Hello World",
+        "message": response,
         "method": "POST",
         "route": "/signup"
     }

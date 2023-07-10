@@ -14,9 +14,8 @@ async def root():
 
 @login.post("/login")
 async def root(data: UserModel_Login):
-    print(LoginController(data))
     return {
-        "message": "Hello World",
+        "data": LoginController(data),
         "method": "POST",
         "route": "/login"
     }

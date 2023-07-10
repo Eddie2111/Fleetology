@@ -3,12 +3,9 @@ import MySQLdb
 import os
 
 load_dotenv()
-cert_pem = os.path.join(os.path.dirname(__file__), 'cert.pem')
 config   = dotenv_values(".env")
 
-class DBConn:
-  def __init__(self):
-    self.connection =  MySQLdb.connect(
+connection =  MySQLdb.connect(
         host     = config['HOST'],
         user     = config['USERNAME'],
         passwd   = config['PASSWORD'],
@@ -19,12 +16,8 @@ class DBConn:
           "ca": "etc/ssl/cacert.pem"
         }
     )
-    self.cursor = self.connection.cursor()
+cursor = connection.cursor()
 
-  def __del__(self):
-    self.connection.close()
-    self.cursor.close()
-  
-  def __test__(self):
-    if self.connection: print("Database Connection successful"); return True
-    else: print("Database Connection unsuccessful"); return False
+def __test__():
+  if connection: print("Database Connection successful"); return True
+  else: print("Database Connection unsuccessful"); return False

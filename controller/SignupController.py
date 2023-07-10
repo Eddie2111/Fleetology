@@ -1,21 +1,19 @@
-#from model.mysql import cursor
-
-# gets the data
-# validates the data
-# inserts the data into the database
-# returns the result
+from model.mysql import cursor
+from functions.bcrypt import Encrypt
 
 def Signup(data):
     try:    
         dataset: dict = {
             'serial': data.serial,
             'email': data.email,
-            'password': data.password
+            'password': Encrypt(data.password)
         }
         # apply validation here
-        #cursor.execute("INSERT INTO users (serial, email, password) VALUES (%s, %s, %s)", (dataset['serial'], dataset['email'], dataset['password']));
-        #print(dataset)
-        return True
+        resultatnt = cursor.execute("INSERT INTO Users (username, email, password) VALUES (%s, %s, %s)", (dataset['serial'], dataset['email'], dataset['password']));
+        return {
+            'message': "Account Created",
+            "status" : "success"
+        }
     
     except Exception as e:
         print(e)
