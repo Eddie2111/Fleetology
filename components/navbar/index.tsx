@@ -1,7 +1,7 @@
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { Dropdown } from '@nextui-org/react'
 
@@ -25,6 +25,17 @@ const MenuItem: React.FC<MenuItemProps> = ({ key, name }) => (
 )
 
 const Navbar: React.FC = () => {
+    const [authtoken, setAuthtoken] = useState<string>('');
+    useEffect(() => {
+        const token = localStorage.getItem('fleetology-user')
+        const jwt = require('jsonwebtoken')
+        const decoded = jwt.decode(token)
+        if (token) {
+            setAuthtoken(token)
+            console.log(authtoken)
+            //window.location.href = decoded.user_type === 'manager' ? '/manager' : '/driver'
+        }
+    }, [])
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
     const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen)
@@ -212,20 +223,37 @@ const Navbar: React.FC = () => {
                             </li>
                         </ul>
                         <div className="mx-[130px]">&nbsp;</div>
+                    
+                    { authtoken ? 
+                                        
+                                        <div className="flex items-center justify-between">
+                                        <button
+                                            className="text-white"
+                                            onClick={() => router.push('/signin')}
+                                        >
+                                            Sign Out
+                                        </button>
+                                        </div>
+                        :
                         <div className="flex items-center justify-between">
-                            <button
-                                className="text-white"
-                                onClick={() => signIn()}
-                            >
-                                Sign in
-                            </button>
-                            <button
-                                className="ml-4 text-white"
-                                onClick={() => router.push('/signup')}
-                            >
-                                Sign up
-                            </button>
-                        </div>
+                        <button
+                            className="text-white"
+                            onClick={() => router.push('/signin')}
+                        >
+                            Sign in
+                        </button>
+                        <button
+                            className="ml-4 text-white"
+                            onClick={() => router.push('/signup')}
+                        >
+                            Sign up
+                        </button>
+                    </div>
+
+                    }
+                    
+
+                    
                     </div>
                 </div>
             </nav>

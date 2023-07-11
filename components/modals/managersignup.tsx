@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { Modal, Button, Text, Input, Row, Checkbox } from '@nextui-org/react'
 
@@ -8,13 +9,27 @@ export default function ManagerSignup() {
     const [confirmPassword, setConfirmPassword] = React.useState<string>('')
 
     const handler = () => setVisible(true)
-
-    const SubmitHandler = () => {
-        console.log(email, password, confirmPassword)
-    }
     const closeHandler = () => {
         setVisible(false)
         console.log('closed')
+    }
+    const SubmitHandler = () => {
+        const uuid = require('uuid')
+        const id = uuid.v4()
+        console.log(email, password, confirmPassword)
+        if (password !== confirmPassword) {
+            alert('Passwords do not match')
+        }
+        else{
+            // signup complete create response
+            axios.post("http://localhost:3200/signup", {
+                serial: id,
+                email: email,
+                password: password,
+                user_type: 'manager',
+            }).then((data)=>{console.log(data); closeHandler()})
+              .catch((err)=>console.log(err))
+        }
     }
 
     return (
@@ -71,7 +86,7 @@ export default function ManagerSignup() {
                         <Button auto flat color="error" onPress={closeHandler}>
                             Close
                         </Button>
-                        <Button auto onPress={closeHandler}>
+                        <Button auto onPress={SubmitHandler}>
                             Sign Up
                         </Button>
                     </div>

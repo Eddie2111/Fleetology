@@ -1,5 +1,16 @@
+import axios from 'axios'
 import React from 'react'
 import { Modal, Button, Text, Input, Row, Checkbox } from '@nextui-org/react'
+
+export function getServerSideProps() {
+    const uuid = require('uuid')
+    const id = uuid.v4()
+    return {
+        props: {
+            id,
+        },
+    }
+}
 
 export default function DriverSignup() {
     const [visible, setVisible] = React.useState(false)
@@ -10,8 +21,24 @@ export default function DriverSignup() {
     const handler = () => setVisible(true)
 
     const SubmitHandler = () => {
+        const id = require('uuid').v4()
         console.log(email, password, confirmPassword)
-        closeHandler()
+        if (password !== confirmPassword) {
+            alert('Passwords do not match')
+        }
+        else{
+            // signup complete create response
+            axios.post("http://localhost:3200/signup", {
+                serial: id,
+                email: email,
+                password: password,
+                user_type: 'driver',
+            }).then((data)=>console.log(data))
+              .catch((err)=>console.log(err))
+        }
+
+
+        //closeHandler()
     }
     const closeHandler = () => {
         setVisible(false)
