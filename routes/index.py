@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from datatype.UserModel import UserModel_Signup
 
 router = APIRouter()
 
@@ -11,11 +12,10 @@ async def root():
     }
 
 @router.post("/")
-async def root():
+async def root(data: UserModel_Signup):
+    print(data)
     return {
-        "message": "Hello World",
+        "data": data,
         "method": "POST",
         "route": "/index"
     }
-
-# Add more routes as needed

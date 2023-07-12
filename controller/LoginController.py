@@ -8,16 +8,22 @@ config   = dotenv_values(".env")
 
 def LoginController(data):
     try:
-    # validation here!
-        resultant = cursor.execute("SELECT * FROM Users WHERE email = %s AND password = %s", (data.email, data.password))    
+        resultant = cursor.execute("SELECT * FROM Users WHERE email = %s", (data.email,))
         result = cursor.fetchone()
-        print(result[0], resultant)
+        if not result:
+            return {
+                "error": "User not found"
+            }
+        if not Match(data.password, result[2]):
+            return {
+                "error": "Password incorrect"
+            }
         token = jsonwebtoken.encode( { 'email': data.email, 'serial': result[0], 'user_type': result[3] }, config["SECRET"], algorithm="HS256")
-        password_match = Match(data.password, result[2]);
+        #print(result,token)
         return {
-            'message': "Login Successful",
+            "token":token
         }
-
     except Exception as e:
-        print(e)
-        return False
+        return {
+            "error": str(e)
+        }
