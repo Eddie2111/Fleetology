@@ -3,13 +3,13 @@ import MySQLdb
 import os
 
 load_dotenv()
-config   = dotenv_values(".env")
+# config   = dotenv_values(".env")
 
 connection =  MySQLdb.connect(
-        host     = config['HOST'],
-        user     = config['USERNAME'],
-        passwd   = config['PASSWORD'],
-        db       = config['DATABASE'],
+        host     = os.environ.get("HOST"),
+        user     = os.environ.get("USERNAME"),
+        passwd   = os.environ.get("PASSWORD"),
+        db       = os.environ.get("DATABASE"),
         autocommit = True,
         ssl_mode = "VERIFY_IDENTITY",
         ssl      = {
