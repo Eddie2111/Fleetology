@@ -1,6 +1,23 @@
 import axios from 'axios'
 import React from 'react'
-import { Modal, Button, Text, Input, Row, Checkbox } from '@nextui-org/react'
+import dynamic from 'next/dynamic'
+import { Modal } from '@nextui-org/react'
+
+const Button = dynamic(() => import('@nextui-org/react').then((mod) => mod.Button), {
+    ssr: false,
+})
+const Input = dynamic(() => import('@nextui-org/react').then((mod) => mod.Input), {
+    ssr: false,
+})
+const Text = dynamic(() => import('@nextui-org/react').then((mod) => mod.Text), {
+    ssr: false,
+})
+const Checkbox = dynamic(() => import('@nextui-org/react').then((mod) => mod.Checkbox), {
+    ssr: false,
+})
+const Row = dynamic(() => import('@nextui-org/react').then((mod) => mod.Row), {
+    ssr: false,
+})
 
 export default function ManagerSignup() {
     const [visible, setVisible] = React.useState(false)
@@ -22,13 +39,19 @@ export default function ManagerSignup() {
         }
         else{
             // signup complete create response
-            axios.post("http://localhost:3200/signup", {
+            const dataset = {
                 serial: id,
                 email: email,
                 password: password,
                 user_type: 'manager',
-            }).then((data)=>{console.log(data); closeHandler()})
-              .catch((err)=>console.log(err))
+            }
+            console.log(dataset)
+            axios.post(process.env.NEXT_PUBLIC_AUTHAPI+"signup", dataset )
+            .then((data)=>{
+                console.log(data); 
+                closeHandler()
+            })
+            .catch((err)=>console.log(err))
         }
     }
 

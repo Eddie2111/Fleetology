@@ -19,6 +19,7 @@ export default function Home() {
                 <center>
                     <Lottie
                         animationData={Uber}
+                        loop={false}
                         style={{
                             height: '70%',
                             width: '70%',
