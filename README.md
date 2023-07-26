@@ -27,7 +27,7 @@ lottie:
 -   DB schema creation
 -   DB functions created
 
-### Works done by Rafiu:
+### Works done by Aaraf Sazid:
 
 -
 -
