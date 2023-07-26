@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 import { useRouter } from 'next/router';
 
@@ -8,6 +9,12 @@ import { FiRefreshCw } from 'react-icons/fi';
 export default function Index(){
   const router = useRouter();
   const [userid, setUserid] = React.useState<string>('');
+  const [driverCreate, setDriverCreate] = React.useState<boolean>(true);
+
+  const [driverName, setDriverName] = React.useState<string>('');
+  const [driverEmail, setDriverEmail] = React.useState<string>('');
+  const [driverPassword, setDriverPassword] = React.useState<string>('');
+
   React.useEffect(()=>{
     try{
       const jsonwebtoken = require('jsonwebtoken');
@@ -25,7 +32,19 @@ export default function Index(){
   const regenerateID = async() => {
     const uuid = require('uuid');
     const id = uuid.v4();
-    await setUserid(id)
+    setUserid(id); 
+    setDriverCreate(driverCreate ? false : true);
+    }
+    const submitHandle = async() => {
+        const jsonwebtoken = require('jsonwebtoken');
+        const token = localStorage.getItem("fleetology-user")
+        const decoded = jsonwebtoken.decode(token)
+        const managerSerial = decoded.serial;
+        const driverData= { serial: userid, name: driverName, email: driverEmail, password: driverPassword }
+        const driverCreate = await axios.post(process.env.NEXT_PUBLIC_AUTHAPI+"signup", driverData)
+        const managerUpdate = await axios.post("api/manager", { serial: managerSerial, driver: userid })
+        Promise.all([driverCreate, managerUpdate]).then((data)=>console.log(data)).catch((err)=>console.log(err))
+        console.log(driverEmail, driverName, driverPassword, userid)
     }
 
     return(
@@ -46,14 +65,16 @@ export default function Index(){
                             </div>
                             <input type="text" disabled className="border rounded-lg bg-gray-200 p-2 text-gray-500" defaultValue={userid}/>
                             <Text>Driver Name</Text>
-                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter driver name"/>
+                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter driver name" onChange={(e)=>setDriverName(e.target.value)}/>
                             <Text>Driver Email</Text>
-                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter driver email"/>
+                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter driver email" onChange={(e)=>setDriverEmail(e.target.value)}/>
                             <Text>Default Password</Text>
-                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter default password"/>
+                            <input type="text" className="border rounded-lg bg-gray-200 p-2" placeholder="Enter default password" onChange={(e)=>setDriverPassword(e.target.value)}/>
                         </Card.Body>
                         <Card.Footer>
-                            <Text>Create Driver</Text>
+                            <button className='w-32 h-12 bg-blue-400 hover:bg-blue-500 rounded-lg shadow-lg hover:shadow-blue-600 duration-300 disabled:bg-slate-400' disabled={driverCreate} onClick={submitHandle}>
+                                Create Driver
+                            </button>
                         </Card.Footer>
                     </Card>
                 </div>
