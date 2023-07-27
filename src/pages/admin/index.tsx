@@ -23,7 +23,7 @@ export default function Index() {
   }, []);
 
   const Auth = async (): Promise<void> => {
-    await axios.get<AuthData>(process.env.NEXT_PUBLIC_AUTHAPI + "getallmanager").then((res: AxiosResponse<AuthData>) => {
+    await axios.get<AuthData>("https://fleetology-auth.onrender.com/getallmanager").then((res: AxiosResponse<AuthData>) => {
       console.log(res.data.data.result);
       setAuthlist(res.data.data.result);
     });
