@@ -58,7 +58,7 @@ export default function DriverSignup() {
         } else {
             // signup complete create response
             axios
-                .post(process.env.NEXT_PUBLIC_AUTHAPI + 'signup', {
+                .post('https://fleetology-auth.onrender.com/signup', {
                     serial: id,
                     email: email,
                     password: password,
