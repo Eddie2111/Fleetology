@@ -61,7 +61,7 @@ const ManagerLogin = () => {
     const handleSubmit = async () => {
         console.log(email, password)
         await axios
-            .post(process.env.NEXT_PUBLIC_AUTHAPI + 'login', {
+            .post('https://fleetology-auth.onrender.com/login', {
                 email: email,
                 password: password,
             })
