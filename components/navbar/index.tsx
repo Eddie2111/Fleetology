@@ -25,7 +25,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ key, name }) => (
 )
 
 const Navbar: React.FC = () => {
-    const [authtoken, setAuthtoken] = useState<string>('');
+    const [authtoken, setAuthtoken] = useState<string>('')
     useEffect(() => {
         const token = localStorage.getItem('fleetology-user')
         const jwt = require('jsonwebtoken')
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
                                     </ul>
                                     <div className="py-1">
                                         <Link
-                                            href="/"
+                                            href="/logout"
                                             className="block px-4 py-2 text-sm  hover:bg-gray-600  text-gray-400  hover:text-white"
                                         >
                                             Sign out
@@ -223,37 +223,32 @@ const Navbar: React.FC = () => {
                             </li>
                         </ul>
                         <div className="mx-[130px]">&nbsp;</div>
-                    
-                    { authtoken ? 
-                                        
-                                        <div className="flex items-center justify-between">
-                                        <button
-                                            className="text-white"
-                                            onClick={() => router.push('/signin')}
-                                        >
-                                            Sign Out
-                                        </button>
-                                        </div>
-                        :
-                        <div className="flex items-center justify-between">
-                        <button
-                            className="text-white"
-                            onClick={() => router.push('/signin')}
-                        >
-                            Sign in
-                        </button>
-                        <button
-                            className="ml-4 text-white"
-                            onClick={() => router.push('/signup')}
-                        >
-                            Sign up
-                        </button>
-                    </div>
 
-                    }
-                    
-
-                    
+                        {authtoken ? (
+                            <div className="flex items-center justify-between">
+                                <button
+                                    className="text-white"
+                                    onClick={() => router.push('/logout')}
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center justify-between">
+                                <button
+                                    className="text-white"
+                                    onClick={() => router.push('/signin')}
+                                >
+                                    Sign in
+                                </button>
+                                <button
+                                    className="ml-4 text-white"
+                                    onClick={() => router.push('/signup')}
+                                >
+                                    Sign up
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </nav>

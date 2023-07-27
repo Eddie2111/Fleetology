@@ -3,18 +3,30 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { Modal } from '@nextui-org/react'
 
-const Button = dynamic(() => import('@nextui-org/react').then((mod) => mod.Button), {
-    ssr: false,
-})
-const Input = dynamic(() => import('@nextui-org/react').then((mod) => mod.Input), {
-    ssr: false,
-})
-const Text = dynamic(() => import('@nextui-org/react').then((mod) => mod.Text), {
-    ssr: false,
-})
-const Checkbox = dynamic(() => import('@nextui-org/react').then((mod) => mod.Checkbox), {
-    ssr: false,
-})
+const Button = dynamic(
+    () => import('@nextui-org/react').then((mod) => mod.Button),
+    {
+        ssr: false,
+    }
+)
+const Input = dynamic(
+    () => import('@nextui-org/react').then((mod) => mod.Input),
+    {
+        ssr: false,
+    }
+)
+const Text = dynamic(
+    () => import('@nextui-org/react').then((mod) => mod.Text),
+    {
+        ssr: false,
+    }
+)
+const Checkbox = dynamic(
+    () => import('@nextui-org/react').then((mod) => mod.Checkbox),
+    {
+        ssr: false,
+    }
+)
 const Row = dynamic(() => import('@nextui-org/react').then((mod) => mod.Row), {
     ssr: false,
 })
@@ -36,8 +48,7 @@ export default function ManagerSignup() {
         console.log(email, password, confirmPassword)
         if (password !== confirmPassword) {
             alert('Passwords do not match')
-        }
-        else{
+        } else {
             // signup complete create response
             const dataset = {
                 serial: id,
@@ -46,12 +57,13 @@ export default function ManagerSignup() {
                 user_type: 'manager',
             }
             console.log(dataset)
-            axios.post(process.env.NEXT_PUBLIC_AUTHAPI+"signup", dataset )
-            .then((data)=>{
-                console.log(data); 
-                closeHandler()
-            })
-            .catch((err)=>console.log(err))
+            axios
+                .post(process.env.NEXT_PUBLIC_AUTHAPI + 'signup', dataset)
+                .then((data) => {
+                    console.log(data)
+                    closeHandler()
+                })
+                .catch((err) => console.log(err))
         }
     }
 

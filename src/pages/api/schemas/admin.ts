@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 interface Admin {
     email: string
@@ -10,6 +10,6 @@ const AdminSchema = new Schema<Admin>({
     password: { type: String, required: true },
 })
 
-const AdminModel = model<Admin>('Admin', AdminSchema);
+const AdminModel = model<Admin>('Admin', AdminSchema)
 
-export default AdminModel;
+export default AdminModel

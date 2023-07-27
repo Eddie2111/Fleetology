@@ -7,7 +7,7 @@ interface Drivers {
     fleet?: string
     location?: string
     phoneNumber?: string
-    isActive?: boolean
+    isApproved?: boolean
 }
 
 const driverSchema = new Schema<Drivers>({
@@ -17,7 +17,7 @@ const driverSchema = new Schema<Drivers>({
     fleet: { type: String },
     location: { type: String },
     phoneNumber: { type: String },
-    isActive: { type: Boolean },
+    isApproved: { type: Boolean },
 })
 
 const driverModel = model<Drivers>('Driver', driverSchema)

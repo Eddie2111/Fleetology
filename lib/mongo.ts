@@ -18,7 +18,7 @@ class Database {
         try {
             if (mongoose.connection.readyState !== 1) {
                 await mongoose.connect(
-                    process.env.MONGODB_URI || 'mongodb://localhost:27017',
+                'mongodb://localhost:27017/fleetology'
                 )
                 console.log('MongoDB connected')
                 return true
@@ -42,6 +42,7 @@ const disconnectDB = async (): Promise<boolean | string> => {
 }
 
 const database = Database.getInstance()
+
 
 export { database }
 

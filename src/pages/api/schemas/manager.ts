@@ -1,27 +1,23 @@
-import { Schema, model } from 'mongoose'
+import mongoose, { Schema, Document, Model } from "mongoose";
 
-interface Manager {
-    serial: string
-    name: string
-    email: string
-    password: string
-    profileImage?: string
-    phoneNumber?: string
-    isActive?: boolean
-    drivers: string[]
+interface Manager extends Document {
+  serial: string;
+  name: string;
+  profileImage?: string;
+  phoneNumber?: string;
+  isActive?: boolean;
+  drivers: string[];
 }
 
-const userSchema = new Schema<Manager>({
-    serial: { type: String, required: true },
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
-    profileImage: { type: String },
-    phoneNumber: { type: String },
-    isActive: { type: Boolean },
-    drivers: [{ type: Schema.Types.ObjectId, ref: 'Driver' }],
-})
+const managerSchema = new Schema<Manager>({
+  serial: { type: String, required: true },
+  name: { type: String, required: true },
+  profileImage: { type: String },
+  phoneNumber: { type: String },
+  isActive: { type: Boolean },
+  drivers: [{ type: Schema.Types.ObjectId, ref: 'Driver' }],
+}, { collection: 'managers' });
 
-const ManagerModel = model<Manager>('Manager', userSchema)
+const ManagerModel: Model<Manager> = mongoose.models.Manager || mongoose.model<Manager>('Manager', managerSchema);
 
-export default ManagerModel
+export default ManagerModel;
