@@ -14,11 +14,15 @@ def LoginController(data):
             return {
                 "error": "User not found"
             }
-        if not Match(data.password, result[2]):
+        # if not Match(data.password, result[2]):
+        #     return {
+        #         "error": "Password incorrect"
+        #     }
+        if data.password != result[2]:
             return {
-                "error": "Password incorrect"
+                'error': 'password incorrect'
             }
-        token = jsonwebtoken.encode( { 'email': data.email, 'serial': result[0], 'user_type': result[3] }, config["SECRET"], algorithm="HS256")
+        token = jsonwebtoken.encode( { 'email': data.email, 'serial': result[0], 'user_type': result[3] }, 'f83hf8932hf8932h89', algorithm="HS256")
         #print(result,token)
         return {
             "token":token
