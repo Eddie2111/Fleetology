@@ -6,10 +6,10 @@ load_dotenv()
 # config   = dotenv_values(".env")
 
 connection =  MySQLdb.connect(
-        host     = 'aws.connect.psdb.cloud',#os.environ.get("HOST"),
-        user     = 'qw2bko66fn8vy0msw26m', #os.environ.get("USERNAME"),
-        passwd   = 'pscale_pw_NIhbCN3txebHMSB8H75F6VHYlr3fVVppEckAVBedtAI', #os.environ.get("PASSWORD"),
-        db       = 'fleetology', #os.environ.get("DATABASE"),
+        host     = os.environ.get("HOST"),
+        user     = os.environ.get("USERNAME"),
+        passwd   = os.environ.get("PASSWORD"),
+        db       = os.environ.get("DATABASE"),
         autocommit = True,
         ssl_mode = "VERIFY_IDENTITY",
         ssl      = {
