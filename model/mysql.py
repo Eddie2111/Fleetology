@@ -7,7 +7,7 @@ load_dotenv()
 
 connection =  MySQLdb.connect(
         host     = os.environ.get("HOST"),
-        user     = os.environ.get("USERNAME"),
+        user     = os.environ.get("USERNAMER"),
         passwd   = os.environ.get("PASSWORD"),
         db       = os.environ.get("DATABASE"),
         autocommit = True,

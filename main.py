@@ -35,6 +35,7 @@ from routes.auth import auth
 from routes.login import login
 from routes.signup import signup
 from routes.getallmanager import GetAllManager
+from routes.getalldrivers import GetAllDriver
 
 # route initialization
 app.include_router(router)
@@ -42,6 +43,7 @@ app.include_router(login)
 app.include_router(signup)
 app.include_router(auth)
 app.include_router(GetAllManager)
+app.include_router(GetAllDriver)
 
 # db test
 __test__();
