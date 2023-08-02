@@ -1,33 +1,28 @@
-from dotenv import load_dotenv, dotenv_values
 from model.mysql import cursor
-from functions.bcrypt import Match
-import jsonwebtoken
+from functions.bcrypt import Encrypt
 
-load_dotenv();
-config   = dotenv_values(".env")
-
-def LoginController(data):
-    try:
-        resultant = cursor.execute("SELECT * FROM Users WHERE email = %s", (data.email,))
-        result = cursor.fetchone()
-        if not result:
-            return {
-                "error": "User not found"
-            }
-        # if not Match(data.password, result[2]):
-        #     return {
-        #         "error": "Password incorrect"
-        #     }
-        if data.password != result[2]:
-            return {
-                'error': 'password incorrect'
-            }
-        token = jsonwebtoken.encode( { 'email': data.email, 'serial': result[0], 'user_type': result[3] }, 'f83hf8932hf8932h89', algorithm="HS256")
-        #print(result,token)
-        return {
-            "token":token
+def Signup(data):
+    try:    
+        dataset: dict = {
+            'serial': data.serial,
+            'email': data.email,
+            'password': data.password,
+            'user_type': data.user_type
         }
-    except Exception as e:
+        # apply validation here
+        resultatnt = cursor.execute("INSERT INTO Users (username, email, password, user_type) VALUES (%s, %s, %s, %s)", (dataset['serial'], dataset['email'], dataset['password'], dataset['user_type']));
+        print(resultatnt)
         return {
-            "error": str(e)
+            'message': "Account Created",
+            "status" : "success",
+            "result" : resultatnt,
+            "serial" : dataset['serial']
+        }
+    
+    except Exception as e:
+        print(e)
+        return {
+            'message': e,
+            "status" : "success",
+            "result" : resultatnt
         }
