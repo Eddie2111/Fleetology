@@ -14,12 +14,12 @@ lottie:
 
 ### Works done by Tareq:
 
--   project initialization, Styles and UI integration
+-   project initialization, styles and UI integration
 -   testing modules integrated
 
 ### Works done by Omar Faroque:
 
--   social auth added
+-   social authentication added
 -   secure session added
 
 ### Works done by SK Araf:
