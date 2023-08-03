@@ -2,22 +2,26 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface Manager extends Document {
   serial: string;
-  name: string;
+  name?: string;
+  email: string;
   profileImage?: string;
   phoneNumber?: string;
   isActive?: boolean;
-  drivers: string[];
+  drivers?: string[];
+  isApproved?: boolean;
 }
 
 const managerSchema = new Schema<Manager>({
-  serial: { type: String, required: true },
-  name: { type: String, required: true },
+  serial: { type: String, required: true, unique: true },
+  name: { type: String },
+  email: { type: String, required: true, unique: true },
   profileImage: { type: String },
   phoneNumber: { type: String },
   isActive: { type: Boolean },
-  drivers: [{ type: Schema.Types.ObjectId, ref: 'Driver' }],
-}, { collection: 'managers' });
+  isApproved: { type: Boolean },
+  drivers: [{ type: String }],
+}, { collection: 'manager' });
 
-const ManagerModel: Model<Manager> = mongoose.models.Manager || mongoose.model<Manager>('Manager', managerSchema);
+const ManagerModel: Model<Manager> = mongoose.models.Managers || mongoose.model<Manager>('Managers', managerSchema);
 
 export default ManagerModel;

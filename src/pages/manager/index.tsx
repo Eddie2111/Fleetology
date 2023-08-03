@@ -41,7 +41,7 @@ export default function Index() {
         const managerSerial = decoded.serial
         const driverData = {
             serial: userid,
-            name: driverName,
+            user_type: 'driver',
             email: driverEmail,
             password: driverPassword,
         }
@@ -49,18 +49,31 @@ export default function Index() {
         //     process.env.NEXT_PUBLIC_AUTHAPI + 'signup',
         //     driverData
         // )
-        // const managerUpdate = await axios.post('api/manager', {
-        //     serial: managerSerial,
-        //     driver: userid,
-        // })
-        // Promise.all([driverCreate, managerUpdate])
-        //     .then((data) => console.log(data))
-        //     .catch((err) => console.log(err))
-        setDriverEmail('')
-        setDriverName('')
-        setDriverPassword('')
-        setUserid('')
-        setDriverCreate(true)
+        console.log(managerSerial)
+        const managerUpdate = await axios.post('api/requests', 
+        {
+            command:"create driver",
+            managerData:{
+                serial: managerSerial,
+                driver: userid,
+            },
+            driverData: {
+                serial:driverData.serial,
+                name:driverName
+            }
+        }
+        )
+        Promise.all([/*driverCreate,*/ managerUpdate])
+            .then((data) => {
+                //gett all the data returned from the promises
+                console.log(data)
+        })
+            .catch((err) => console.log(err))
+        // setDriverEmail('')
+        // setDriverName('')
+        // setDriverPassword('')
+        // setUserid('')
+        // setDriverCreate(true)
         console.log(driverEmail, driverName, driverPassword, userid)
     }
 

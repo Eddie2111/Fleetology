@@ -58,7 +58,7 @@ export default function ManagerSignup() {
             }
             console.log(dataset)
             axios
-                .post('https://fleetology-auth.onrender.com/signup', dataset)
+                .post(process.env.NEXT_PUBLIC_AUTHAPI+'signup', dataset)
                 .then((data) => {
                     console.log(data)
                     closeHandler()

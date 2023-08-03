@@ -52,7 +52,7 @@ const ManagerLogin = () => {
     const [email, setEmail] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
     const [visible, setVisible] = React.useState(false)
-
+    const router = useRouter();
     const handler = () => setVisible(true)
     const closeHandler = () => {
         setVisible(false)
@@ -61,7 +61,7 @@ const ManagerLogin = () => {
     const handleSubmit = async () => {
         console.log(email, password)
         await axios
-            .post('https://fleetology-auth.onrender.com/login', {
+            .post(process.env.NEXT_PUBLIC_AUTHAPI+'login', {
                 email: email,
                 password: password,
             })
@@ -72,6 +72,7 @@ const ManagerLogin = () => {
                         'fleetology-user',
                         data.data.data.token
                     )
+                    router.push('/driver')
                 } else {
                     alert(data.data.data.error)
                 }

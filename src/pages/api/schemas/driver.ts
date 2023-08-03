@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
 
 interface Drivers {
     serial: string
@@ -7,6 +7,7 @@ interface Drivers {
     fleet?: string
     location?: string
     phoneNumber?: string
+    manager: string
     isApproved?: boolean
 }
 
@@ -17,9 +18,9 @@ const driverSchema = new Schema<Drivers>({
     fleet: { type: String },
     location: { type: String },
     phoneNumber: { type: String },
+    manager: { type: String, required: true },
     isApproved: { type: Boolean },
-})
+}, {collection:'driver'})
 
-const driverModel = model<Drivers>('Driver', driverSchema)
-
+const driverModel: Model<Drivers> = mongoose.models.Drivers || mongoose.model<Driver>('Drivers', driverSchema);
 export default driverModel
