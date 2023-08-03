@@ -1,10 +1,9 @@
 import axios from 'axios'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { useSession, signIn } from 'next-auth/react'
 import React from 'react'
 
-import { Container, Modal } from '@nextui-org/react'
+import { Modal } from '@nextui-org/react'
 import { FcGoogle } from 'react-icons/fc'
 import { FaFacebookF } from 'react-icons/fa'
 
@@ -52,7 +51,6 @@ const ManagerLogin = () => {
     const [email, setEmail] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
     const [visible, setVisible] = React.useState(false)
-    const router = useRouter()
     const handler = () => setVisible(true)
     const closeHandler = () => {
         setVisible(false)
@@ -72,7 +70,7 @@ const ManagerLogin = () => {
                         'fleetology-user',
                         data.data.data.token
                     )
-                    router.push('/manager')
+                    window.location.href='/manager'
                 } else {
                     alert(data.data.data.error)
                 }

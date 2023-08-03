@@ -1,6 +1,5 @@
 import axios from 'axios'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { useSession, signIn } from 'next-auth/react'
 import React from 'react'
 
@@ -52,7 +51,6 @@ const ManagerLogin = () => {
     const [email, setEmail] = React.useState<string>('')
     const [password, setPassword] = React.useState<string>('')
     const [visible, setVisible] = React.useState(false)
-    const router = useRouter();
     const handler = () => setVisible(true)
     const closeHandler = () => {
         setVisible(false)
@@ -72,7 +70,7 @@ const ManagerLogin = () => {
                         'fleetology-user',
                         data.data.data.token
                     )
-                    router.push('/driver')
+                    window.location.href='/driver'
                 } else {
                     alert(data.data.data.error)
                 }

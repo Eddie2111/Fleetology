@@ -9,9 +9,10 @@ interface IDataset{
 }
 
 interface Data{
-    dataset: IDataset;
-    command: string;
+    dataset?: IDataset;
+    command?: string;
     error?: any;
+    serial?: string;
 }
 
 interface IDriverByManager{
@@ -21,7 +22,7 @@ interface IDriverByManager{
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data[]>
+    res: NextApiResponse<Data>
 ){
 
     const serial:string = " " || req.body.dataset.serial;
@@ -31,15 +32,15 @@ export default async function handler(
     //const splittedCommand = command.split(" ");
     
     if (serial && command.length != 2) {
-        return res.status(400).json([{ error: "Invalid command", dataset: "null", command: "null" }]);
+        return res.status(400).json({ error: "Invalid command",  command: "null", dataset: {serial: 'null', email: 'null'} });
       }
       
       if (!serial) {
-        return res.status(400).json([{ error: "Invalid serial", dataset: "null", command: "null" }]);
+        return res.status(400).json({ error: "Invalid serial",  command: "null",  dataset: {serial: 'null', email: 'null'} });
       }
       
       if (!command) {
-        return res.status(400).json([{ error: "Invalid command", dataset: "null", command: "null" }]);
+        return res.status(400).json({ error: "Invalid command",  command: "null",  dataset: {serial: 'null', email: 'null'} });
       }
       
 

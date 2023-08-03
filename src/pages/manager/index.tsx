@@ -45,10 +45,12 @@ export default function Index() {
             email: driverEmail,
             password: driverPassword,
         }
-        // const driverCreate = await axios.post(
-        //     process.env.NEXT_PUBLIC_AUTHAPI + 'signup',
-        //     driverData
-        // )
+        const driverCreate = await axios.post(
+            process.env.NEXT_PUBLIC_AUTHAPI + 'signup',
+            driverData
+        )
+        .then(()=>console.log('driver created'))
+        .catch((err:any):any=>console.log(err))
         console.log(managerSerial)
         const managerUpdate = await axios.post('api/requests', 
         {
@@ -63,7 +65,7 @@ export default function Index() {
             }
         }
         )
-        Promise.all([/*driverCreate,*/ managerUpdate])
+        Promise.all([driverCreate, managerUpdate])
             .then((data) => {
                 //gett all the data returned from the promises
                 console.log(data)
