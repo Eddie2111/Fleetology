@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { rejectDriver, rejectManager, AcceptDriver, AcceptManager } from './controller/requests';
+import { rejectDriver, rejectManager, AcceptDriver, AcceptManager, getDriverByManager } from './controller/requests';
 import { AddDriverByManager } from './controller/DriverAddByManager';
 
 interface IDataset{
@@ -62,6 +62,11 @@ export default async function handler(
     if ( command[0] === "create" && command[1] === 'driver') {
         AddDriverByManager(req.body);
         return res.status(200).json({serial: 'test', command: 'create driver'})
+    }
+    if ( command[0] === "get" && command[1] === 'drivers') {
+        const result = await getDriverByManager(req.body.serial);
+        //console.log(req.body.serial)
+        return res.status(200).json({serial: serial, command: 'get drivers', data:result})
     }
 
     //res.status(200).json({serial: serial, command: `${command[0]},${command[1]}`});

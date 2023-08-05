@@ -2,14 +2,14 @@ import mongoose, { Schema, model } from 'mongoose'
 import { Model } from "mongoose";
 
 interface Drivers {
-    serial: string
-    name?: string
-    profileImage?: string
-    fleet?: string
-    location?: string
-    phoneNumber?: string
-    manager: string
-    isApproved?: boolean
+    serial: string;
+    name?: string;
+    profileImage?: string;
+    fleet?: string;
+    location?: string[];
+    phoneNumber?: string;
+    manager: string;
+    isApproved?: boolean;
 }
 
 const driverSchema = new Schema<Drivers>({
@@ -17,7 +17,7 @@ const driverSchema = new Schema<Drivers>({
     name: { type: String, required: true },
     profileImage: { type: String },
     fleet: { type: String },
-    location: { type: String },
+    location: { type: [String] },
     phoneNumber: { type: String },
     manager: { type: String, required: true },
     isApproved: { type: Boolean },
