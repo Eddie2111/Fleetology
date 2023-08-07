@@ -4,13 +4,7 @@ import React from 'react'
 import { Card } from '@nextui-org/react'
 
 type ResponseData = {
-    data: {
-        data: {
-            serial: string,
-            command: string,
-            data: string[]
-        }
-    }
+    data: any
 }
 
 const AllowDriver: React.FC = () => {
@@ -26,7 +20,15 @@ const AllowDriver: React.FC = () => {
             axios.post<ResponseData>("api/requests",{command: "get drivers",serial:decoded.serial})
             .then((res)=>{ 
                 console.log(res.data)
-                setRequestList(res.data.data[0].drivers)
+                if (res.data.data[0]) {
+                    setRequestList(res.data.data[0].drivers);
+                } else {
+                    setRequestList([]);
+                }
+            })
+            .catch(res=>{
+                console.log(res)
+                setRequestList([]);
             })
         }
         catch(err){

@@ -34,23 +34,39 @@ const rejectManager = async (serial: string) => {
     console.log(result)
     return result;
 }
+interface Iresult{
+    drivers?: any;
+}
 const getDriverByManager = async (serial: string) => {
-    try{
-        // only get drivers 
+    try {
         let driverList = [];
-        const result = await ManagerModel.findOne({ serial: serial }).select('drivers').exec();
-        // only get drivers that are not approved but has the same manager serial
-        for (let i = 0; i < result[0].drivers.length; i++) {
-            const driver = await driverModel.find({ serial: result[0].drivers[i], isApproved: false }).select("serial email name").exec();
-            //if (driver.length > 0) driverList.push(driver[0])
-            //driverList.push(driver);
-            console.log(driver)
-            if(driver.length > 0) {
-                driverList.push(driver[0])}
-            
-            else{ console.log('not null')}
+        const result:Iresult | null = await ManagerModel.findOne({ serial: serial }).select('drivers').exec();
+
+        if (result) {
+            for (let i = 0; i < result.drivers.length; i++) {
+                const driver = await driverModel.find({ serial: result.drivers[i], isApproved: false }).select("serial email name").exec();
+
+                if (driver.length > 0) {
+                    driverList.push(driver[0]);
+                } else {
+                    console.log('not null');
+                }
+            }
+            return driverList;
+        } else {
+            console.log('Manager not found');
+            return null; // Return appropriate value or handle this case as needed
         }
-        // console.log(driverList)
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+};
+
+
+const getDriver = async (serial: string) => {
+    try{
+        const result = await driverModel.find({ serial: serial }).exec();
         return result;
     }
     catch(err){
@@ -59,4 +75,11 @@ const getDriverByManager = async (serial: string) => {
     }
 }
 
-export { AcceptDriver, rejectDriver, AcceptManager, rejectManager, getDriverByManager }
+export { 
+    AcceptDriver, 
+    rejectDriver, 
+    AcceptManager, 
+    rejectManager, 
+    getDriverByManager,
+    getDriver 
+}
