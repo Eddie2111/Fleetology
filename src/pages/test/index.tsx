@@ -23,5 +23,5 @@ export default function Test() {
             console.log(err)
         }
     }, [])
-    return <Map />
+    return <div />
 }
