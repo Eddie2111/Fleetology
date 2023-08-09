@@ -8,3 +8,4 @@ origins = [
     "http://fleetology.vercel.app",
     "https://fleetology.vercel.app",
 ]
+  

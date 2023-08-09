@@ -10,3 +10,7 @@ class UserModel_Signup(BaseModel):
     email: str
     password: str
     user_type: str
+
+
+
+

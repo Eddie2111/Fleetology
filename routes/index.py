@@ -19,3 +19,6 @@ async def root(data: UserModel_Signup):
         "method": "POST",
         "route": "/index"
     }
+
+
+    

@@ -21,3 +21,4 @@ cursor = connection.cursor()
 def __test__():
   if connection: print("Database Connection successful"); return True
   else: print("Database Connection unsuccessful"); return False
+

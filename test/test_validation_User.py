@@ -57,3 +57,8 @@ def test_validate_userData():
         "user_type": 12345
     }
     assert validate_userData(data) == "Invalid data type for password. Expected str, got int"
+
+
+
+
+    

@@ -25,3 +25,9 @@ def Signup(data):
             "status" : "success",
             "result" : resultant
         }
+
+
+
+
+
+            
