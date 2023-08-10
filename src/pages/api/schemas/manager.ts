@@ -29,3 +29,9 @@ const managerSchema = new Schema<Manager>({
 const ManagerModel: Model<Manager> = mongoose.models.Managers || mongoose.model<Manager>('Managers', managerSchema);
 
 export default ManagerModel;
+
+
+
+
+
+
