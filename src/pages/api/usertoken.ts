@@ -17,3 +17,10 @@ export default function handler(
     const decoded:Decoded = decrypt(token);
     res.status(200).json({ data: decoded })
 }
+
+
+
+
+
+
+
