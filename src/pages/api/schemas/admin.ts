@@ -13,3 +13,10 @@ const AdminSchema = new Schema<Admin>({
 const AdminModel = model<Admin>('Admin', AdminSchema)
 
 export default AdminModel
+
+
+
+
+
+
+
