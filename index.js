@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const uuid = require('uuid');
-
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -14,32 +14,59 @@ const store_passwd = process.env.STORE_SECRET
 const is_live = false //true for live, false for sandbox
 
 app.use(express.json());
+app.use(cors(
+    {
+        origin: '*',
+        methods: ['GET','POST','PUT','DELETE'],
+        allowedHeaders: ['Content-Type','Authorization']
+    }
+))
 
-async function pinger(){
-    // write me a simple fetch request at localhost:3000/ping
-    setInterval(() => {
-        fetch('https://fleetology-auth.onrender.com')
-        .then(res => console.log('ping'))   
-        .catch(err => console.log(err));
-    }, 3000);
-    
+async function ping(){
+    fetch(process.env.PINGER)
+    .then(res => console.log('ll'))
+    .catch(err => console.log(err));
 }
 
+async function pinger(){
+    setInterval(() => {
+        fetch('https://fleetology-auth.onrender.com')
+        .then(res => console.log())   
+        .catch(err => console.log(err));
+    }, 15000);
+    
+}
+app.get("/ping",(req,res)=>{
+    try{
+        setInterval(() => {
+            fetch(process.env.PINGER).then(res => console.log('lame')).catch(err => console.log(err));
+        }, 6000);
+        res.send("Pinged")
+    }
+    catch(err){
+        console.log(err);
+        res.send("Error")
+    }
+})
 
 app.get("/", async (req,res) =>{
-    await pinger();
+    try{ await pinger(); }
+    catch(err){ console.log(err); }
     res.send("Hello World")
 })
 app.post("/", (req,res)=>{
     // required
     // name, email, phone, amount
+    const amount = req.body.amount;
+    //convert amount to int
+
     const data = {
-        total_amount: req.body.amount,
+        total_amount: parseInt(amount),
         currency: 'BDT',
         tran_id: uuid.v4(), // use unique tran_id for each api call
-        success_url: 'http://localhost:3000/success',
-        fail_url: 'http://localhost:3000/fail',
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: process.env.SUCCESS,
+        fail_url: process.env.FAIL,
+        cancel_url: process.env.CANCEL,
         ipn_url: 'http://localhost:3000/ipn',
         shipping_method: 'Courier',
         product_name: 'Computer.',
@@ -80,5 +107,7 @@ app.post("/", (req,res)=>{
 })
 
 app.listen(port, ()=>{
+    try{pinger();}
+    catch(err){console.log(err);}
     console.log(`Server is running on port ${port}`);
 })
