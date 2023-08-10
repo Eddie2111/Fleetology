@@ -64,7 +64,7 @@ export default function DriverSignup() {
                     password: password,
                     user_type: 'driver',
                 })
-                .then((data) => console.log(data))
+                .then((data) => {console.log(data); window.location.href="/driver";})
                 .catch((err) => console.log(err))
         }
 
