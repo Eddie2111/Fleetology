@@ -4,6 +4,7 @@ const app = express();
 const uuid = require('uuid');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const axios = require('axios');
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -30,7 +31,7 @@ async function ping(){
 
 async function pinger(){
     setInterval(() => {
-        fetch('https://fleetology-auth.onrender.com')
+        axios.get('https://fleetology-auth.onrender.com')
         .then(res => console.log())   
         .catch(err => console.log(err));
     }, 15000);
