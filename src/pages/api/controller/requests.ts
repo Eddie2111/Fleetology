@@ -75,11 +75,24 @@ const getDriver = async (serial: string) => {
     }
 }
 
+const getManager = async (serial: string) => {
+    try{
+        const result = await ManagerModel.find({ serial: serial }).exec();
+        //console.log(result);
+        return result;
+    }
+    catch(err){
+        console.log(err);
+        return false;
+    }
+}
+
 export { 
     AcceptDriver, 
     rejectDriver, 
     AcceptManager, 
     rejectManager, 
     getDriverByManager,
-    getDriver 
+    getDriver,
+    getManager 
 }

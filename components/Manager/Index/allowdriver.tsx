@@ -15,11 +15,11 @@ const AllowDriver: React.FC = () => {
             const jsonwebtoken = require('jsonwebtoken')
             const token = localStorage.getItem('fleetology-user')
             const decoded = jsonwebtoken.decode(token)
-            console.log(decoded)
+            //console.log(decoded)
             const response = 
             axios.post<ResponseData>("api/requests",{command: "get drivers",serial:decoded.serial})
             .then((res)=>{ 
-                console.log(res.data)
+                //console.log(res.data)
                 if (res.data.data[0]) {
                     setRequestList(res.data.data[0].drivers);
                 } else {
@@ -27,12 +27,12 @@ const AllowDriver: React.FC = () => {
                 }
             })
             .catch(res=>{
-                console.log(res)
+                //console.log(res)
                 setRequestList([]);
             })
         }
         catch(err){
-            console.log(err)
+            //console.log(err)
         }
     },[]);
     return(

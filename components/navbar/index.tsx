@@ -25,14 +25,16 @@ const MenuItem: React.FC<MenuItemProps> = ({ key, name }) => (
 )
 
 const Navbar: React.FC = () => {
-    const [authtoken, setAuthtoken] = useState<string>('')
+    const [authtoken, setAuthtoken] = useState<string>('');
+    const [userType, setUserType] = useState<string>('');
     useEffect(() => {
         const token = localStorage.getItem('fleetology-user')
         const jwt = require('jsonwebtoken')
         const decoded = jwt.decode(token)
         if (token) {
             setAuthtoken(token)
-            console.log(authtoken)
+            //console.log(authtoken)
+            setUserType(decoded.user_type)
             //window.location.href = decoded.user_type === 'manager' ? '/manager' : '/driver'
         }
     }, [])
@@ -76,7 +78,7 @@ const Navbar: React.FC = () => {
                             <li>
                                 <Link
                                     href="/"
-                                    className="block mt-2 py-2 pl-3 pr-4  rounded md:bg-transparent md:text-blue-700 md:p-0 md: text-blue-500  bg-blue-600 md: bg-transparent"
+                                    className="block mt-2 py-2 pl-3 pr-4  rounded md:bg-transparent md:text-white md:p-0 md: text-white  bg-blue-600 md: bg-transparent"
                                 >
                                     Home
                                 </Link>
@@ -189,9 +191,16 @@ const Navbar: React.FC = () => {
                                     </ul>
                                     <div className="py-1">
                                         <Link
-                                            href="/logout"
-                                            className="block px-4 py-2 text-sm  hover:bg-gray-600  text-gray-400  hover:text-white"
+                                            href={"/" || `${userType === 'manager' ? '/manager' : '/driver'}}`}
+                                            className="block ml-2 mr-2 px-4 py-2 text-sm  hover:bg-gray-600  text-gray-400  hover:text-white"
                                         >
+                                            Profile
+                                        </Link>
+                                        <Link
+                                            href="/logout"
+                                            className="block ml-2 mr-2 px-4 py-2 text-sm  hover:bg-gray-600  text-gray-400  hover:text-white"
+                                        >
+                                            &nbsp;&nbsp;&nbsp;
                                             Sign out
                                         </Link>
                                     </div>
@@ -225,14 +234,25 @@ const Navbar: React.FC = () => {
                         <div className="mx-[130px]">&nbsp;</div>
 
                         {authtoken ? (
+                            <div className="flex flex-row justify-between">
+                            <div className="flex items-center justify-between">
+                                <button
+                                    className="text-white ml-2 mr-2"
+                                    onClick={() => router.push(`/${userType}`)}
+                                >
+                                    Profile
+                                </button>
+                            </div>
                             <div className="flex items-center justify-between">
                                 <button
                                     className="text-white"
                                     onClick={() => router.push('/logout')}
                                 >
-                                    Sign Out
+                                    &nbsp;Sign Out
                                 </button>
                             </div>
+                            </div>
+                            
                         ) : (
                             <div className="flex items-center justify-between">
                                 <button

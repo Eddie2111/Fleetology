@@ -9,6 +9,8 @@ interface Manager extends Document {
   isActive?: boolean;
   drivers?: string[];
   isApproved?: boolean;
+  isPaid?: boolean;
+  plan?: string;
 }
 
 const managerSchema = new Schema<Manager>({
@@ -20,6 +22,8 @@ const managerSchema = new Schema<Manager>({
   isActive: { type: Boolean },
   isApproved: { type: Boolean },
   drivers: [{ type: String }],
+  isPaid: { type: Boolean },
+  plan: { type: String },
 }, { collection: 'manager' });
 
 const ManagerModel: Model<Manager> = mongoose.models.Managers || mongoose.model<Manager>('Managers', managerSchema);

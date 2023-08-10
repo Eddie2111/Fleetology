@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { Container, Button, Text, Row, Col, Card } from '@nextui-org/react'
 
 const ManagerSignup = dynamic(() => import('@/components/modals/managersignup'))
 const DriverSignup = dynamic(() => import('@/components/modals/driversignup'))
@@ -35,13 +37,68 @@ const SignupPage = () => {
     }
 
     return (
-        <div className="flex md:flex-row justify-center items-center flex-col">
-            <div>
-                <ManagerSignup />
-                <DriverSignup />
-            </div>
-            <div></div>
+        <div className="mt-[-10px] md:mt-[0px]">
+        <p className="justify-center text-center text-4xl font-semibold mb-5">
+            Sign up as
+        </p>
+        <Container
+            display="flex"
+            justify="center"
+            css={{ minHeight: '50vh' }}
+        >
+            <Card isPressable css={{w:"280px",h:"200px"}} style={{marginRight:"25px"}}>
+                <Card.Body css={{ p: 0 }}>
+                    <Card.Header>
+                        <Text b>Have fleet?</Text>
+                    </Card.Header>
+                <Card.Image
+                    src="/animations/manager.gif"
+                    objectFit="cover"
+                    width="40%"
+                    height={140}
+                    alt={"Orange"}
+                />
+                </Card.Body>
+                <Card.Footer css={{ justifyItems: "flex-start" }}>
+                <Row wrap="wrap" justify="space-between" align="center">
+                    <Text b>Manager</Text>
+                    <ManagerSignup />
+                </Row>
+                </Card.Footer>
+            </Card>
+
+            <Card isPressable css={{w:"280px",h:"200px"}}>
+                <Card.Body css={{ p: 0 }}>
+                    <Card.Header>
+                        <Text b>Have a car?</Text>
+                    </Card.Header>
+                <Card.Image
+                    src="/animations/driver.gif"
+                    objectFit="cover"
+                    width="40%"
+                    height="100%"
+                    alt={"Orange"}
+                />
+                </Card.Body>
+                <Card.Footer css={{ justifyItems: "flex-start" }}>
+                <Row wrap="wrap" justify="space-between" align="center">
+                    <Text b>Driver</Text>
+                    <DriverSignup />
+                </Row>
+                </Card.Footer>
+            </Card>
+
+    </Container>
+
+    <p className="justify-center text-center text-4xl font-semibold mb-5">
+            Have Account?  &nbsp;
+            <Link href="/signin" className="text-blue-500 hover:text-blue-600 hover:underline hover:underline-offset-1 duration-300">
+                Login Here
+            </Link>
+        </p>
+
         </div>
+    
     )
 }
 

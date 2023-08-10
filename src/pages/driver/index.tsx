@@ -30,7 +30,8 @@ interface IDriverCore{
 export default function Index() {
   const [driverdata, setDriverData] = React.useState<IDriverAuth | any>();
   const [driver, setDriver] = React.useState<IDriverCore | any>();
-
+  const [lat, setLat] = React.useState<string>();;
+  const [lng, setLng] = React.useState<string>();
   React.useEffect(() => {
     const token = localStorage.getItem('fleetology-user');
     const driverAuth = axios.post<IDriverAuth>('api/usertoken', { token: token });
@@ -44,12 +45,17 @@ export default function Index() {
         });
         setDriverData(driverData.data);
         setDriver(driverCoreData.data);
+        setLat(driverCoreData.data.data[0].location[1]);
+        setLng(driverCoreData.data.data[0].location[0]);
         console.log(driver,driverdata);
       } catch (error) {
         console.error(error);
       }
     }
     getDriverData();
+    setInterval(() => {
+      getDriverData();
+    }, 4000);
   }, []);
   console.log(driver,driverdata)
 
@@ -69,14 +75,14 @@ export default function Index() {
               <div className="p-2 w-full shadow-md bg-gray-200 h-[180px] overflow-y-auto">
                 <p>Serial: {driver?.data[0]?.serial}</p>
                 <p>Manager ID: {driver?.data[0]?.manager}</p>
-                <p>Driver Location: {driver?.data[0]?.location}</p>
+                <p>Driver Location: {driver?.data[0]?.location[0]}, {driver?.data[0]?.location[1]}</p>
                 <p>Driver Phone: {driver?.data[0]?.phoneNumber}</p>
                 <p>Approval: {driver?.data[0]?.isApproved.toString()}</p>
               </div>
             </Card.Body>
             <Card.Footer></Card.Footer>
           </Card>
-          <Map w="400" h="450" />
+          <Map w="400" h="450" lng={parseFloat(driver?.data[0]?.location[1])} lat={parseFloat(driver?.data[0]?.location[0])} />
         </div>
          ) : (
             <Loading color="primary" size="lg" />

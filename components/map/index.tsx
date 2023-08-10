@@ -3,16 +3,18 @@ import mapboxgl from 'mapbox-gl'
 interface Isize{
     w:string;
     h:string;
+    lng:number;
+    lat:number;
 }
-export default function Map({w,h}:MapProps) {
+export default function Map({w,h,lng,lat}:MapProps) {
     mapboxgl.accessToken =
         process.env.NEXT_PUBLIC_MAPBOX_PUBLIC || 'DEFAULT_ACCESS_TOKEN'
     const mapContainer = useRef(null)
     const map = useRef<mapboxgl.Map | null>(null)
     const marker = useRef<mapboxgl.Marker | null>(null)
-    const [lng, setLng] = useState(90.398225)
-    const [lat, setLat] = useState(23.765281)
-    const [zoom, setZoom] = useState(15)
+    //const [lng, setLng] = useState(90.398225)
+    //const [lat, setLat] = useState(23.765281)
+    const [zoom, setZoom] = useState(10)
     const cssStyle= {width: `${w}px`,height: `${h}px`};
     useEffect(() => {
         if (map.current === null) {
@@ -20,7 +22,7 @@ export default function Map({w,h}:MapProps) {
                 container: mapContainer.current || 'default',
                 style: process.env.NEXT_PUBLIC_MAPBOX_STYLE || 'default',
                 center: [lng, lat] || [90.398225, 23.765281],
-                zoom: zoom || 15,
+                zoom: zoom || 10,
             })
             marker.current = new mapboxgl.Marker({
                 color: 'red',
