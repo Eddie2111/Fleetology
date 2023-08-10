@@ -82,3 +82,7 @@ export default async function handler(
 
     //res.status(200).json({serial: serial, command: `${command[0]},${command[1]}`});
 }
+
+
+
+
